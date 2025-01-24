@@ -39,18 +39,21 @@ const MyPlaylist = ({ authorization }) => {
 
   // 구조파괴 할당
   const items = resolved.data.items;
-
-  return (
-    <>
-      items.map( (item) => (
-      <div>
-        <img src={item.images.map((image) => image.url)} alt="" />
+  items.map((item) => {
+    console.log(item.images);
+    return (
+      <div key={item.id}>
+        <img
+          src={item.images.map((image) => {
+            return image.url;
+          })}
+          alt=""
+        />
         <div>재생목록 아이디: {item.id}</div>
         <div>재생목록 이름: {item.name}</div>
       </div>
-      ) )
-    </>
-  );
+    );
+  });
 };
 
 export default MyPlaylist;
